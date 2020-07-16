@@ -145,7 +145,7 @@ if __name__ == "__main__":
     print(f"*** 开始进行嗅探工作(模型: {info}, 并发任务数量: {concurrent}) ***")
     ip = net_dog.ip_handler()
     if sniffing_type == "tcp":
-        address = net_dog.address_handler(ip)
+        address = net_dog.address_handler(ip
         result = model(net_dog.osi_layer_four, address)
     if sniffing_type == "ping":
         result = model(net_dog.osi_layer_three, ip)
@@ -156,5 +156,6 @@ if __name__ == "__main__":
         write_result = net_dog.local_persistance(persistance, result, data_type=sniffing_type,)
         if not write_result:
             print(f"*** 数据持久化本地发生异常，请查看错误日志，日志路径: {log_path} ***")
-        print(f"*** 数据持久化至本地路径: {write_result} ***")
+        else:
+            print(f"*** 数据持久化至本地路径: {write_result} ***")
 
