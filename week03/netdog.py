@@ -6,8 +6,9 @@ import socket
 import logging
 # import requests
 import argparse
-# import threading
+import threading
 import subprocess
+import multiprocessing
 from multiprocessing import cpu_count
 # ip address
 # port range option
@@ -49,7 +50,7 @@ class NetDog:
         if self.address_field:
             ip = (f"{network_field}{i}" for i in range(int(start), int(end)+1))
         else:
-            ip = [f"{network_field}{start}", ]
+            ip = f"{network_field}{start}"
         return ip
 
     def address_handler(self, ip):
@@ -144,7 +145,7 @@ if __name__ == "__main__":
     print(f"*** 开始进行嗅探工作(模型: {info}, 并发任务数量: {concurrent}) ***")
     ip = net_dog.ip_handler()
     if sniffing_type == "tcp":
-        address = net_dog.address_handler(ip[0])
+        address = net_dog.address_handler(ip)
         result = model(net_dog.osi_layer_four, address)
     if sniffing_type == "ping":
         result = model(net_dog.osi_layer_three, ip)
