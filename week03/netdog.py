@@ -149,6 +149,7 @@ if __name__ == "__main__":
         result = model(net_dog.osi_layer_four, address)
     if sniffing_type == "ping":
         result = model(net_dog.osi_layer_three, ip)
+    print("*** 嗅探结束 ***")
     if persistance and result:
         write_result = net_dog.local_persistance(persistance, result, data_type=sniffing_type,)
         if not write_result:
@@ -157,4 +158,3 @@ if __name__ == "__main__":
 
     if performance:
         print(f"*** 执行时间: {time() - start_time:.2f} ***")
-    print("*** 嗅探结束 ***")
